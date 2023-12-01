@@ -4,9 +4,9 @@ public class DynamicSolution {
     private HashMap<String, ArrayList> wordFamilies = new HashMap<>();
     private ArrayList<String> remainingWordList = new ArrayList<>();
     private String partialSolution;
-
     private int solutionLength;
 
+    // The functions getSolutionLength, getPartialSolution, getWordFamilies, and getRemainingWordList are created only for testing purposes, and that's why they are commented out upon submission.
     public int getSolutionLength(){
         return solutionLength;
     }
@@ -76,6 +76,7 @@ public class DynamicSolution {
         return guessCorrect;
     }
 
+    // The functions updateWordFamilies, updatePartialSolution, and updateRemainingWordList are private functions upon submission, but they were changed to public functions during testing.
     public void updateWordFamilies(String newGuess){
         HashMap<String, ArrayList> newWordFamilies = new HashMap<>();
 
