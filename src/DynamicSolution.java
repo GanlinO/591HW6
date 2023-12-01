@@ -7,21 +7,21 @@ public class DynamicSolution {
     private int solutionLength;
 
     // The functions getSolutionLength, getPartialSolution, getWordFamilies, and getRemainingWordList are created only for testing purposes, and that's why they are commented out upon submission.
-    public int getSolutionLength(){
-        return solutionLength;
-    }
-
-    public String getPartialSolution(){
-        return partialSolution;
-    }
-
-    public HashMap<String, ArrayList> getWordFamilies(){
-        return wordFamilies;
-    }
-
-    public ArrayList<String> getRemainingWordList(){
-        return remainingWordList;
-    }
+//    public int getSolutionLength(){
+//        return solutionLength;
+//    }
+//
+//    public String getPartialSolution(){
+//        return partialSolution;
+//    }
+//
+//    public HashMap<String, ArrayList> getWordFamilies(){
+//        return wordFamilies;
+//    }
+//
+//    public ArrayList<String> getRemainingWordList(){
+//        return remainingWordList;
+//    }
 
     public DynamicSolution(ArrayList<String> wordList, int minLengthInWordList, int maxLengthInWordList){
         Random rand = new Random();
@@ -53,6 +53,7 @@ public class DynamicSolution {
         return !partialSolution.contains("-");
     }
 
+    // The function printProgress and printVictory return nothing, so I tested them using the console, rather than writing formal tests.
     public void printProgress() {
         System.out.println("Current progress: " + partialSolution);
     }
@@ -76,8 +77,8 @@ public class DynamicSolution {
         return guessCorrect;
     }
 
-    // The functions updateWordFamilies, updatePartialSolution, and updateRemainingWordList are private functions upon submission, but they were changed to public functions during testing.
-    public void updateWordFamilies(String newGuess){
+    // The functions updateWordFamilies, updatePartialSolution, and updateRemainingWordList are private functions upon submission, but they were temporarily changed to public functions during testing.
+    private void updateWordFamilies(String newGuess){
         HashMap<String, ArrayList> newWordFamilies = new HashMap<>();
 
         for (String word : remainingWordList){
@@ -106,11 +107,10 @@ public class DynamicSolution {
                 newWordFamilies.put(wordFamilyKey, newWordFamily);
             }
         }
-
         wordFamilies = newWordFamilies;
     }
 
-    public boolean updatePartialSolution(){
+    private boolean updatePartialSolution(){
         boolean partialSolutionUpdated = false;
         int numberOfWordsInLargestWordFamily = 0;
         String updatedPartialSolution = partialSolution;
@@ -130,7 +130,7 @@ public class DynamicSolution {
         return partialSolutionUpdated;
     }
 
-    public void updateRemainingWordList(){
+    private void updateRemainingWordList(){
         remainingWordList = wordFamilies.get(partialSolution);
     }
 }

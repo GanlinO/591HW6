@@ -18,20 +18,22 @@ class Tests {
         assertEquals(11, newGame.getMaxLengthInWordList());
     }
 
-    @Test
-    void testDynamicSolution1() {
-        // test if the random word length that the function DynamicSolution creates is valid
-        EvilHangman newGame = new EvilHangman("testDict1.txt");
-        DynamicSolution newSolution = new DynamicSolution(newGame.getWordList(), newGame.getMinLengthInWordList(), newGame.getMaxLengthInWordList());
-
-        ArrayList<Integer> possibleSolutionLength = new ArrayList<>();
-        // a valid length is between 5 and 11 (both ends are inclusive)
-        for (int i = 5; i <= 11; i++){
-            possibleSolutionLength.add(i);
-        }
-
-        assertTrue(possibleSolutionLength.contains(newSolution.getSolutionLength()));
-    }
+    // test if the random word length that the function DynamicSolution creates is valid
+    // The function getSolutionLength was public during testing but changed to private upon submission, so this test was eventually commented out.
+//    @Test
+//    void testDynamicSolution1() {
+//
+//        EvilHangman newGame = new EvilHangman("testDict1.txt");
+//        DynamicSolution newSolution = new DynamicSolution(newGame.getWordList(), newGame.getMinLengthInWordList(), newGame.getMaxLengthInWordList());
+//
+//        ArrayList<Integer> possibleSolutionLength = new ArrayList<>();
+//        // a valid length is between 5 and 11 (both ends are inclusive)
+//        for (int i = 5; i <= 11; i++){
+//            possibleSolutionLength.add(i);
+//        }
+//
+//        assertTrue(possibleSolutionLength.contains(newSolution.getSolutionLength()));
+//    }
 
     // The functions getSolutionLength, getPartialSolution, getWordFamilies, and getRemainingWordList are created only for testing purposes, and that's why this test is commented out upon submission.
 //    @Test
@@ -196,4 +198,22 @@ class Tests {
 //        newSolution.updateRemainingWordList();
 //        assertEquals(list3, newSolution.getRemainingWordList());
 //    }
+
+    @Test
+    void testIsSolved(){
+        EvilHangman newGame = new EvilHangman("testDict1.txt");
+        DynamicSolution newSolution = new DynamicSolution(newGame.getWordList(), newGame.getMinLengthInWordList(), newGame.getMaxLengthInWordList());
+
+        assertFalse(newSolution.isSolved());
+    }
+
+    @Test
+    void testAddGuess(){
+        EvilHangman newGame = new EvilHangman("testDict1.txt");
+        DynamicSolution newSolution = new DynamicSolution(newGame.getWordList(), newGame.getMinLengthInWordList(), newGame.getMaxLengthInWordList());
+
+        assertTrue(newSolution.addGuess("a"));
+        assertFalse(newSolution.addGuess("a"));
+        assertFalse(newSolution.addGuess("z"));
+    }
 }

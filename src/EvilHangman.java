@@ -9,7 +9,9 @@ public class EvilHangman {
     private TreeSet<Character> incorrectGuesses;
 
     private DynamicSolution solution;
+
     private Scanner inputScanner;
+
     private int minLengthInWordList;
     private int maxLengthInWordList;
 
@@ -57,7 +59,9 @@ public class EvilHangman {
             solution.printProgress();
             System.out.println("Previous incorrect guesses: " + incorrectGuesses.toString());
             System.out.print("Please enter a lowercase alphabet: ");
+
             String input = inputScanner.next();
+
             if (input.length() != 1) {
                 System.out.println("You entered more than one character!\n");
             } else if (!Character.isLowerCase(input.charAt(0))){
@@ -68,12 +72,12 @@ public class EvilHangman {
                 return input.charAt(0);
             }
         }
-
     }
 
     private void recordGuess(char newGuess) {
         previousGuesses.add(newGuess);
         boolean isCorrect = solution.addGuess(String.valueOf(newGuess));
+
         if (!isCorrect) {
             incorrectGuesses.add(newGuess);
         }
